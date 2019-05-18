@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.upto.park.dao.mapper.pay.PayQueryMapper" >
+    <resultMap id="BaseResultMap" type="com.upto.park.dao.model.pay.PayQuery" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="buss_cd" property="bussCd" jdbcType="VARCHAR" />
+        <result column="usr_num" property="usrNum" jdbcType="VARCHAR" />
+        <result column="park_no" property="parkNo" jdbcType="VARCHAR" />
+        <result column="park_name" property="parkName" jdbcType="VARCHAR" />
+        <result column="reserve" property="reserve" jdbcType="VARCHAR" />
+        <result column="sign" property="sign" jdbcType="VARCHAR" />
+        <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, buss_cd, usr_num, park_no, park_name, reserve, sign, is_delete, create_time, modified_time
+    </sql>
+
+    <insert id="insertPayQuery" parameterType="com.upto.park.dao.model.pay.PayQuery">
+        INSERT INTO
+        park_pay_query
+        (buss_cd, usr_num, park_no, park_name, ref_no, exit_time, reserve, sign)
+        VALUES
+        (#{bussCd, jdbcType=VARCHAR}, #{usrNum, jdbcType=VARCHAR}, #{parkNo, jdbcType=VARCHAR},
+        #{parkName, jdbcType=VARCHAR}, #{reserve, jdbcType=VARCHAR}, #{sign, jdbcType=VARCHAR})
+    </insert>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  </delete>
+</mapper>
