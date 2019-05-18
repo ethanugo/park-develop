@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "/enterInfo")
 public class EnterInfoController {
@@ -31,6 +33,20 @@ public class EnterInfoController {
             responseData = ResponseUtils.buildSuccessData(result);
         } catch (ParkException e) {
             logger.error("=====insert enter info error=====");
+            responseData = ResponseUtils.buildErrorData(e.getErrorCode(), e.getMessage());
+        }
+        return responseData;
+    }
+
+    @RequestMapping(value = "/getEnterInfoList", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public ResponseData<List<EnterInfo>> getEnterInfoList() {
+        ResponseData<List<EnterInfo>> responseData = null;
+        try {
+            List<EnterInfo> result = enterInfoService.getEnterInfoList();
+            responseData = ResponseUtils.buildSuccessData(result);
+        } catch (ParkException e) {
+            logger.error("=====get enter info List error=====");
             responseData = ResponseUtils.buildErrorData(e.getErrorCode(), e.getMessage());
         }
         return responseData;

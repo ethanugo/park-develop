@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service(value = "enterInfoService")
 public class EnterInfoServiceImpl extends BaseServiceImpl implements EnterInfoService {
@@ -33,6 +35,18 @@ public class EnterInfoServiceImpl extends BaseServiceImpl implements EnterInfoSe
             }
         } catch (Exception e) {
             logger.error("插入车辆进场信息异常", e);
+            throw new ParkException(ErrorEnum.SYSTEM_ERROR.getErrorCode(), e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public List<EnterInfo> getEnterInfoList() throws ParkException {
+        List<EnterInfo> result = null;
+        try {
+            result = enterInfoMapper.getEnterInfoList();
+        } catch (Exception e) {
+            logger.error("获取车辆入场信息异常", e);
             throw new ParkException(ErrorEnum.SYSTEM_ERROR.getErrorCode(), e.getMessage());
         }
         return result;

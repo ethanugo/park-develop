@@ -37,6 +37,13 @@
         WHERE enter_info_number = #{enterInfoNumber}
         AND is_delete = 0
     </select>
+
+    <select id="getEnterInfoList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM park_enter_info
+        WHERE is_delete = 0
+    </select>
+
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     </select>
 
