@@ -3,6 +3,7 @@
 <mapper namespace="com.upto.park.dao.mapper.enter.EnterInfoMapper" >
     <resultMap id="BaseResultMap" type="com.upto.park.dao.model.enter.EnterInfo" >
         <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="enter_info_number" property="enterInfoNumber" jdbcType="VARCHAR" />
         <result column="usr_num" property="usrNum" jdbcType="VARCHAR" />
         <result column="buss_cd" property="bussCd" jdbcType="VARCHAR" />
         <result column="park_no" property="parkNo" jdbcType="VARCHAR" />
@@ -17,22 +18,28 @@
     </resultMap>
 
     <sql id="Base_Column_List" >
-        id, usr_num, buss_cd, park_no, park_name, ref_no, entry_time, reserve, sign, is_delete, create_time, modified_time
+        id, enter_info_number, usr_num, buss_cd, park_no, park_name, ref_no, entry_time, reserve, sign, is_delete, create_time, modified_time
     </sql>
 
     <insert id="insertEnterInfo" parameterType="com.upto.park.dao.model.enter.EnterInfo">
         INSERT INTO
         park_enter_info
-        (usr_num, buss_cd, park_no, park_name, ref_no, entry_time, reserve, sign)
+        (enter_info_number, usr_num, buss_cd, park_no, park_name, ref_no, entry_time, reserve, sign)
         VALUES
-        (#{usrNum, jdbcType=VARCHAR}, #{bussCd, jdbcType=VARCHAR}, #{parkNo, jdbcType=VARCHAR},
-        #{parkName, jdbcType=VARCHAR}, #{refNo, jdbcType=VARCHAR}, #{entryTime, jdbcType=VARCHAR},
-        #{reserve, jdbcType=VARCHAR}, #{sign, jdbcType=VARCHAR})
+        (#{enterInfoNumber, jdbcType=VARCHAR}, #{usrNum, jdbcType=VARCHAR}, #{bussCd, jdbcType=VARCHAR},
+        #{parkNo, jdbcType=VARCHAR}, #{parkName, jdbcType=VARCHAR}, #{refNo, jdbcType=VARCHAR},
+        #{entryTime, jdbcType=VARCHAR}, #{reserve, jdbcType=VARCHAR}, #{sign, jdbcType=VARCHAR})
     </insert>
 
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-  </select>
+    <select id="checkNumberExit" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM park_enter_info
+        WHERE enter_info_number = #{enterInfoNumber}
+        AND is_delete = 0
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-  </delete>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    </delete>
 </mapper>

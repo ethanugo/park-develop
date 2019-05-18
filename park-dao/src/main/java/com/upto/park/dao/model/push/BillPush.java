@@ -1,9 +1,16 @@
 package com.upto.park.dao.model.push;
 
+import java.util.Date;
+
 /**
  * 账单推送实体类
  */
 public class BillPush {
+    /**
+     * 账单推送数据编号
+     */
+    private String billPushNumber;
+
     /**
      * 业务代码
      */
@@ -59,7 +66,30 @@ public class BillPush {
      */
     private String sign;
 
+    /**
+     * 是否删除 0：未删除 1：已删除
+     */
+    private Integer isDelete;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    /**
+     * 修改时间
+     */
+    private Date modifiedTime;
+
     public BillPush() {
+    }
+
+    public String getBillPushNumber() {
+        return billPushNumber;
+    }
+
+    public void setBillPushNumber(String billPushNumber) {
+        this.billPushNumber = billPushNumber;
     }
 
     public String getBussCd() {
@@ -150,10 +180,35 @@ public class BillPush {
         this.sign = sign;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModifiedTime() {
+        return modifiedTime;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
     @Override
     public String toString() {
         return "BillPush{" +
-                "bussCd='" + bussCd + '\'' +
+                "billPushNumber='" + billPushNumber + '\'' +
+                ", bussCd='" + bussCd + '\'' +
                 ", billNo='" + billNo + '\'' +
                 ", usrNum='" + usrNum + '\'' +
                 ", parkNo='" + parkNo + '\'' +
@@ -164,6 +219,9 @@ public class BillPush {
                 ", payTime='" + payTime + '\'' +
                 ", reserve='" + reserve + '\'' +
                 ", sign='" + sign + '\'' +
+                ", isDelete=" + isDelete +
+                ", createTime=" + createTime +
+                ", modifiedTime=" + modifiedTime +
                 '}';
     }
 }

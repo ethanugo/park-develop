@@ -1,10 +1,17 @@
 package com.upto.park.dao.model.enter;
 
 
+import java.util.Date;
+
 /**
  * 车辆入场信息实体类
  */
 public class EnterInfo {
+    /**
+     * 车辆入场数据编号
+     */
+    private String enterInfoNumber;
+
     /**
      * 车牌号
      */
@@ -45,7 +52,30 @@ public class EnterInfo {
      */
     private String sign;
 
+    /**
+     * 是否删除 0：未删除 1：已删除
+     */
+    private Integer isDelete;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    /**
+     * 修改时间
+     */
+    private Date modifiedTime;
+
     public EnterInfo() {
+    }
+
+    public String getEnterInfoNumber() {
+        return enterInfoNumber;
+    }
+
+    public void setEnterInfoNumber(String enterInfoNumber) {
+        this.enterInfoNumber = enterInfoNumber;
     }
 
     public String getUsrNum() {
@@ -112,10 +142,35 @@ public class EnterInfo {
         this.sign = sign;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModifiedTime() {
+        return modifiedTime;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
     @Override
     public String toString() {
         return "EnterInfo{" +
-                "usrNum='" + usrNum + '\'' +
+                "enterInfoNumber='" + enterInfoNumber + '\'' +
+                ", usrNum='" + usrNum + '\'' +
                 ", bussCd='" + bussCd + '\'' +
                 ", parkNo='" + parkNo + '\'' +
                 ", parkName='" + parkName + '\'' +
@@ -123,6 +178,9 @@ public class EnterInfo {
                 ", entryTime='" + entryTime + '\'' +
                 ", reserve='" + reserve + '\'' +
                 ", sign='" + sign + '\'' +
+                ", isDelete=" + isDelete +
+                ", createTime=" + createTime +
+                ", modifiedTime=" + modifiedTime +
                 '}';
     }
 }

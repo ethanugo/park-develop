@@ -1,9 +1,17 @@
 package com.upto.park.dao.model.pay;
 
+import java.util.Date;
+
 /**
  * 无感支付查询实体类
  */
 public class PayQuery {
+
+    /**
+     * 无感支付查询数据编号
+     */
+    private String payQueryNumber;
+
     /**
      * 业务代码
      */
@@ -34,7 +42,30 @@ public class PayQuery {
      */
     private String sign;
 
+    /**
+     * 是否删除 0：未删除 1：已删除
+     */
+    private Integer isDelete;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    /**
+     * 修改时间
+     */
+    private Date modifiedTime;
+
     public PayQuery() {
+    }
+
+    public String getPayQueryNumber() {
+        return payQueryNumber;
+    }
+
+    public void setPayQueryNumber(String payQueryNumber) {
+        this.payQueryNumber = payQueryNumber;
     }
 
     public String getBussCd() {
@@ -85,15 +116,43 @@ public class PayQuery {
         this.sign = sign;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModifiedTime() {
+        return modifiedTime;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
     @Override
     public String toString() {
         return "PayQuery{" +
-                "bussCd='" + bussCd + '\'' +
+                "payQueryNumber='" + payQueryNumber + '\'' +
+                ", bussCd='" + bussCd + '\'' +
                 ", usrNum='" + usrNum + '\'' +
                 ", parkNo='" + parkNo + '\'' +
                 ", parkName='" + parkName + '\'' +
                 ", reserve='" + reserve + '\'' +
                 ", sign='" + sign + '\'' +
+                ", isDelete=" + isDelete +
+                ", createTime=" + createTime +
+                ", modifiedTime=" + modifiedTime +
                 '}';
     }
 }

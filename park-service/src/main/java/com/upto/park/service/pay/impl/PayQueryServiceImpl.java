@@ -1,9 +1,11 @@
 package com.upto.park.service.pay.impl;
 
 import com.upto.park.common.exception.ParkException;
+import com.upto.park.common.tools.ConstantUtil;
 import com.upto.park.common.tools.ErrorEnum;
 import com.upto.park.dao.mapper.pay.PayQueryMapper;
 import com.upto.park.dao.model.pay.PayQuery;
+import com.upto.park.service.baseimpl.BaseServiceImpl;
 import com.upto.park.service.pay.PayQueryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service(value = "payQueryService")
-public class PayQueryServiceImpl implements PayQueryService {
+public class PayQueryServiceImpl extends BaseServiceImpl implements PayQueryService {
     private static final Logger logger = LoggerFactory.getLogger(PayQueryServiceImpl.class);
 
     @Autowired
@@ -20,6 +22,7 @@ public class PayQueryServiceImpl implements PayQueryService {
     @Override
     public Boolean insertPayQuery(PayQuery payQuery) throws ParkException {
         Boolean result = false;
+        payQuery.setPayQueryNumber(this.generateNumber(payQueryMapper, ConstantUtil.CommonNoun.PAY_QUERY_NUMBER_PREFIX));
         try {
             Integer i = payQueryMapper.insertPayQuery(payQuery);
             if (0 < i) {

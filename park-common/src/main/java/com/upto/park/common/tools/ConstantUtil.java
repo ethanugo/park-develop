@@ -33,6 +33,26 @@ public class ConstantUtil {
          * 结果
          */
         public static final String RESULT = "RESULT :";
+
+        /**
+         * 车辆进场信息数据编号前缀
+         */
+        public static final String ENTER_INFO_NUMBER_PREFIX = "EIN";
+
+        /**
+         * 车辆离场信息数据编号前缀
+         */
+        public static final String LEAVE_INFO_NUMBER_PREFIX = "LIN";
+
+        /**
+         * 无感支付查询数据编号前缀
+         */
+        public static final String PAY_QUERY_NUMBER_PREFIX = "PQN";
+
+        /**
+         * 账单推送数据编号前缀
+         */
+        public static final String BILL_PUSH_NUMBER_PREFIX = "BPN";
     }
 
     /**

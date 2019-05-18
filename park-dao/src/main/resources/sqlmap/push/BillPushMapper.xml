@@ -3,6 +3,7 @@
 <mapper namespace="com.upto.park.dao.mapper.push.BillPushMapper" >
     <resultMap id="BaseResultMap" type="com.upto.park.dao.model.push.BillPush" >
         <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="bill_push_number" property="billPushNumber" jdbcType="VARCHAR" />
         <result column="buss_cd" property="bussCd" jdbcType="VARCHAR" />
         <result column="bill_no" property="billNo" jdbcType="VARCHAR" />
         <result column="usr_num" property="usrNum" jdbcType="VARCHAR" />
@@ -20,18 +21,26 @@
     </resultMap>
 
     <sql id="Base_Column_List" >
-        id, buss_cd, bill_no, usr_num, park_no, park_name, bill_at, pay_at, start_time, pay_time, reserve, sign, is_delete, create_time, modified_time
+        id, bill_push_number, buss_cd, bill_no, usr_num, park_no, park_name, bill_at, pay_at, start_time, pay_time, reserve, sign, is_delete, create_time, modified_time
     </sql>
 
     <insert id="insertBillPush" parameterType="com.upto.park.dao.model.push.BillPush">
         INSERT INTO
         park_bill_push
-        (buss_cd, bill_no, usr_num, park_no, park_name, bill_at, pay_at, start_time, pay_time, reserve, sign)
+        (bill_push_number, buss_cd, bill_no, usr_num, park_no, park_name, bill_at, pay_at, start_time, pay_time, reserve, sign)
         VALUES
-        (#{bussCd, jdbcType=VARCHAR}, #{billNo, jdbcType=VARCHAR}, #{usrNum, jdbcType=VARCHAR}, #{parkNo, jdbcType=VARCHAR},
-        #{parkName, jdbcType=VARCHAR}, #{billAt, jdbcType=INTEGER}, #{payAt, jdbcType=INTEGER}, #{startTime, jdbcType=VARCHAR},
+        (#{billPushNumber, jdbcType=VARCHAR}, #{bussCd, jdbcType=VARCHAR}, #{billNo, jdbcType=VARCHAR},
+        #{usrNum, jdbcType=VARCHAR}, #{parkNo, jdbcType=VARCHAR}, #{parkName, jdbcType=VARCHAR},
+        #{billAt, jdbcType=INTEGER}, #{payAt, jdbcType=INTEGER}, #{startTime, jdbcType=VARCHAR},
         #{payTime, jdbcType=VARCHAR}, #{reserve, jdbcType=VARCHAR}, #{sign, jdbcType=VARCHAR})
     </insert>
+
+    <select id="checkNumberExit" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM park_bill_push
+        WHERE bill_push_number = #{billPushNumber}
+        AND is_delete = 0
+    </select>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
   </select>
